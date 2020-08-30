@@ -1,0 +1,21 @@
+Test Data Builder =  criador de dados para testes.
+
+Exemplo de fluxo:  realizar um teste onde é feito um insert no banco, mas a cada teste o total de registro aumento, se comparar o total do teste com a quantidade de registro, sempre vai dar diferente.
+
+Lista em memoria é mais rapido que em banco de dados.
+-> Simular banco de dados na mão é muito trabalhoso.
+**-> Com base Nisso  foi criado um DAOFAlso.java para ser realizado os testes de mock.
+
+Mockito:
+- ajuda a criar objetos falsos.
+- mock: classe falsa.
+
+Exemplo de Mock:
+when(daoFalso.correntes()).thenReturn(new ArrayList<Leilao>());
+
+->Facil verificação se um metodo foi envocado.
+-> verify() 
+-> quantidade:  times()
+
+
+
