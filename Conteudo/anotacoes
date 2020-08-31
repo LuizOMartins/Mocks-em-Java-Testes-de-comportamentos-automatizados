@@ -18,4 +18,40 @@ when(daoFalso.correntes()).thenReturn(new ArrayList<Leilao>());
 -> quantidade:  times()
 
 
+______________________________________________________________
 
+Exceção:
+
+Simulando envio de e-mail:
+
+Interface: carteiro.
+**receber no construtor, mais flexibilidade.
+
+obs: teste nao podem ficar quebrados.
+
+->simulando que o sistema funciona mesmo quando o banco esta fora do Ar.
+Lançan Exceção com mockito:
+  doThrow(new RuntimeException()).when(daoFalso).atualiza(leilao2);
+
+
+______________________________________________________________
+
+
+Capturando argumentos recebidos pelo Mock:
+
+ArgumentCaptor.
+- Usado para pegar o valor do arumento passado, no exemplo foi utilizado par nao pecizar ter alteração nas classe, pois se tivesse teria uma alteração de Dominio.
+
+ArgumentCaptor<ABC> argumento = ArgumentCaptor.forClass(ABC.class);
+
+
+
+______________________________________________________________
+
+
+Isolando para Testar:
+
+-> Isolando captura do dia atual, para nao ter problema com o teste gerado em algum dia da semana, pois esta sendo utiliza Calendar.getInstance().
+
+-> pensar sempre em facilitar os testes.
+-> aumentar as abostrações.
