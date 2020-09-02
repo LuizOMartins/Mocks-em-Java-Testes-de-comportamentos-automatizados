@@ -1,0 +1,48 @@
+Projeto com JPA  e Hibernate.
+
+-> Na paste de teste, o package fica igual nas clsses de PROD.
+
+Para ter testes mais fieis com banco de dados, é necessário realizar o teste direto no banco de verdade.
+
+Teste de Integração: 
+- fazendo teste no banco de verdade, utilizando o usuárioDAO.
+
+
+Qual a diferença entre um teste de integração e um teste de unidade?
+
+Um teste de unidade isola a classe de suas dependências, e a testa independente delas. Testes de unidade fazem sentido quando nossas classes contém regras de negócio, mas dependem de infra estrutura. Nesses casos, fica fácil isolar a infra estrutura.
+
+Já testes de integração testam a classe de maneira integrada ao serviço que usam. Um teste de DAO, por exemplo, que bate em um banco de dados de verdade, é considerado um teste de integração. Testes como esses são especialmente úteis para testar classes cuja responsabilidade é se comunicar com outros serviços.
+
+
+Ao usar mocks, estamos "enganando" nosso teste. Um bom teste de DAO é aquele que garante que sua consulta SQL realmente funciona quando enviada para o banco de dados; e a melhor maneira de garantir isso é enviando-a para o banco!
+
+Repare que, na explicação, quando usamos mock objects, nosso teste passou, mesmo estando com bug! Testes como esses não servem de nada, apenas atrapalham.
+
+Sempre que tiver classes cuja responsabilidade é falar com outro sistema, teste-a realmente integrando com esse outro sistema.
+
+_______________________
+
+@Before
+@after
+->  para criar e fechar sessão, e fazendo rollback de transação.
+
+
+Praticando consultas mais complicadas:
+
+
+Geralmente o grande desafio é justamente montar o cenário e validar o resultado esperado no sistema externo. No caso de banco de dados, precisamos fazer INSERTs, DELETEs, e SELECTs para validar. Além disso, ainda precisamos manter o estado do sistema consistente, ou seja, precisamos limpar o banco de dados constantemente para que um teste não atrapalhe o outro.
+
+Veja que usamos o JUnit da mesma forma. A diferença é que justamente precisamos nos comunicar com o outro sistema.
+
+
+
+_______________________
+
+
+.flush(): Precisamos forçar o Hibernate a enviar comandos para o banco de dados, e garantir que as próximas consultas levarão em consideração as anteriores. Para isso, o flush() torna-se obrigatório em alguns testes!
+
+Geralmente em testes que fazemos SELECTs logo após uma deleção ou alteração em batch, o uso do flush é obrigatório.
+
+
+.clear()
